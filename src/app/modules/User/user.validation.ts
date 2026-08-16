@@ -25,7 +25,7 @@ const createUserValidationSchema = z.object({
         invalid_type_error: 'Address must be a string',
         required_error: 'Address is required',
       })
-      .max(20, { message: 'Password cannot be more than 20 characters' })
+      .max(200, { message: 'Address cannot be more than 200 characters' })
       .default('Bangladesh'),
 
       phone: z
@@ -60,22 +60,6 @@ const createUserValidationSchema = z.object({
         invalid_type_error: 'PasswordChangedAt must be a valid date',
       })
       .optional(),
-
-    role: z
-      .string({
-        invalid_type_error: 'Role must be a string',
-        required_error: 'Role is required',
-      })
-      .refine((val) => ['admin', 'customer'].includes(val), {
-        message: 'Role must be either "admin" or "customer"',
-      })
-      .default('customer'),
-
-    isDeleted: z
-      .boolean({
-        invalid_type_error: 'isDeleted must be a boolean',
-      })
-      .default(false),
   }),
 });
 

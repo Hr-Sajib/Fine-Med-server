@@ -4,7 +4,13 @@ import { UserModel } from "./user.model";
 import bcrypt from "bcrypt"; // Make sure bcrypt is installed
 
 const createUserIntoDB = async(payload: TUser) => {
-  const newUser = await UserModel.create(payload); 
+  // Defense in depth: never trust client-supplied role/isDeleted, even if
+  // some other caller path still passes them.
+  const newUser = await UserModel.create({
+    ...payload,
+    role: 'customer',
+    isDeleted: false,
+  });
   if(!newUser){
     throw new AppError(400,"User not registerd! Error occured! ")
   }

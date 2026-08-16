@@ -6,15 +6,16 @@ import sendResponse from "../../../utils/sendResponse";
 import { OrderServices } from "./order.service";
 import SSLCommerzPayment from "sslcommerz-lts";
 import AppError from "../../errors/AppError";
+import config from "../../../config";
 
 const createOrder = catchAsync(async (req: Request, res: Response) => {
   const order = req.body;
 
   // console.log("order-ctrl: ", order)
 
-  // payment 
-  const store_id = 'test67f513f2c14ae';
-  const store_passwd = 'test67f513f2c14ae@ssl';
+  // payment
+  const store_id = config.ssl_store_id as string;
+  const store_passwd = config.ssl_store_passwd as string;
   const is_live = false;
 
 // Generate dynamic transaction ID
@@ -32,7 +33,7 @@ const data = {
     product_name: "baler product",
     product_category: 'Electronic',
     product_profile: 'general',
-    cus_name: 'Customer Name',
+    cus_name: order.userName,
     cus_email: order.userEmail,
     cus_add1: 'Dhaka',
     cus_add2: 'Dhaka',

@@ -137,6 +137,18 @@ const updateOrderInDB = async (orderId: string, updatedData: Partial<IOrder>) =>
     throw new AppError(httpStatus.NOT_FOUND, "Order not found");
   }
 
+  if (
+    updatedData.status &&
+    updatedData.status !== "pending" &&
+    existingOrder.prescriptionRequired === true &&
+    existingOrder.prescriptionVarified !== true
+  ) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "Cannot update order status until the prescription has been verified"
+    );
+  }
+
   if (updatedData.status) {
     // Configure Nodemailer transporter
     // CHANGE HERE: Replace 'gmail' with another service (e.g., 'sendgrid', 'mailgun') if needed
