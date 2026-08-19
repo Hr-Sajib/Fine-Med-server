@@ -1,0 +1,31 @@
+name: Deploy finemed-server to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          authkey: ${{ secrets.TS_AUTHKEY }}
+          tags: tag:ci
+
+      - name: Deploy via SSH over Tailscale
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 100.71.109.62
+          username: deploy
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            set -e
+            cd /var/www/sajib/projects/finemed/finemed-server
+            git pull origin main
+            docker compose up -d --build
