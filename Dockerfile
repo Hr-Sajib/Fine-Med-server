@@ -22,6 +22,6 @@ COPY package.json ./
 
 USER finemed
 
-EXPOSE 5000
+EXPOSE 5001
 
 CMD ["node", "dist/server.js"]
