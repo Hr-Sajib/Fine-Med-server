@@ -18,7 +18,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://fine-med-client.vercel.app","http://localhost:3000","http://localhost:3001","https://finemed.sajibofficial.me"],
+    origin: ["http://localhost:5173", "http://localhost:3000", "http://localhost:3001", "https://finemed.sajibofficial.me"],
     credentials: true,
   })
 );

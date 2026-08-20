@@ -25,10 +25,10 @@ const data = {
     total_amount: order.totalPrice,
     currency: 'BDT',
     tran_id: transactionId,
-    success_url: `https://fine-med-server.vercel.app/api/orders/payment-success/${transactionId}`,
-    fail_url: `https://fine-med-server.vercel.app/api/orders/payment-failed/${transactionId}`,
-    cancel_url: `https://fine-med-server.vercel.app/api/orders/payment-cancel/orders/${transactionId}`,
-    ipn_url: 'https://fine-med-server.vercel.app/api/orders/ipn',
+    success_url: `https://finemedapi.sajibofficial.me/api/orders/payment-success/${transactionId}`,
+    fail_url: `https://finemedapi.sajibofficial.me/api/orders/payment-failed/${transactionId}`,
+    cancel_url: `https://finemedapi.sajibofficial.me/api/orders/payment-cancel/orders/${transactionId}`,
+    ipn_url: 'https://finemedapi.sajibofficial.me/api/orders/ipn',
     shipping_method: 'Courier',
     product_name: "baler product",
     product_category: 'Electronic',
@@ -70,7 +70,7 @@ const data = {
   }
 
 
-  
+
   // console.log("controller level order: ",order)
   let result;
   if(order.paymentMethod == "sslcommerz"){
@@ -143,8 +143,8 @@ const updateOrder = catchAsync(async (req: Request, res: Response) => {
 //     const transporter = nodemailer.createTransport({
 //         service: 'gmail',
 //         auth: {
-//             user: process.env.EMAIL_USER,  
-//             pass: process.env.EMAIL_PASS,  
+//             user: process.env.EMAIL_USER,
+//             pass: process.env.EMAIL_PASS,
 //         },
 //     });
 
@@ -202,7 +202,7 @@ const deleteOrder = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getMyOrders = catchAsync(async (req: Request, res: Response) => {
-  const user = req.user; 
+  const user = req.user;
   if (!user || !user.userEmail) {
     throw new AppError(httpStatus.UNAUTHORIZED, "Unauthorized access");
   }

@@ -4,9 +4,9 @@
 The **FineMed Server** powers the **FineMed-Client** telemedicine and e-commerce platform. Built using **Node.js**, **Express**, and **TypeScript**, it offers **type-safe**, **scalable**, and **secure APIs** for managing medicines, users, orders, and reviews.
 
 * * * * *
-LIVE Frontend:  https://fine-med-client.vercel.app
+LIVE Frontend:  https://finemed.sajibofficial.me
 
-LIVE Backend(THIS):  https://fine-med-server.vercel.app
+LIVE Backend(THIS):  https://finemedapi.sajibofficial.me
 
 🧱 Tech Stack
 -------------
